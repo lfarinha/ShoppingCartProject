@@ -7,7 +7,7 @@ public class Main {
 
 		Controller newSearch = new Controller();
 		
-		newSearch.searchItem("XboxOne");
+		newSearch.searchItem("WiiU");
 		
 		
 	}

@@ -9,5 +9,16 @@ public class Controller {
 		searchItem.getItem(params);
 		
 	}
+	
+	public void addItemToCart(String params){
+		
+		Item addItemToCart = new Item();
+		
+		addItemToCart.getItem(params);
+		
+		//ShoppingCart cart = new ShoppingCart();
+				
+	}
+	
 
 }

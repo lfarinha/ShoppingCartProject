@@ -4,7 +4,9 @@ public class ItemCollection extends Item {
 
 	public void itemCollection(String params){
 		
-		String[][] ItemList = new String[10][10];
+		String[][] ItemList = new String[5][5];
+		
+
 		
 		//First row names
 		ItemList[0][0]="ItemID";
@@ -22,14 +24,14 @@ public class ItemCollection extends Item {
 		ItemList[1][3]="350";
 		ItemList[1][4]="100";
 		
-		//Item 001 -- PS4
+		//Item 002 -- PS4
 		ItemList[2][0]="002";
 		ItemList[2][1]="PlayStation4";
 		ItemList[2][2]="Sony";
 		ItemList[2][3]="350";
 		ItemList[2][4]="100";
 		
-		//Item 001 -- WIIU
+		//Item 003 -- WIIU
 		ItemList[3][0]="003";
 		ItemList[3][1]="WiiU";
 		ItemList[3][2]="Nintendo";
@@ -42,10 +44,8 @@ public class ItemCollection extends Item {
 //			printItemsInColumn(row, col, ItemList[row][col]);
 //		}
 //	}
-	
+//	
 	printItemsWhileParameter(getSpecificItem(params, ItemList));
-
-
 		
 	}
 	
@@ -58,15 +58,16 @@ public class ItemCollection extends Item {
 	}
 	
 	public String getSpecificItem(String params, String[][] list){
-		String temp="";
-		for(int row=0; row<5; row++){
+		String temp = null;
+		for(int row=1; row<4; row++){
 			for(int col=0; col<5; col++){
-				if(list[row][col] == params){
+				if(list[row][col].equals(params)){
+					printItemsInColumn(row, col, list[row][col]);
 					temp = list[row][col];
+					System.out.println("temp "+temp);
 				}
 			}
 		}
 		return temp;
 	}
-	
 }
