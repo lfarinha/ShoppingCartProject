@@ -3,21 +3,11 @@ package alphaVersion;
 
 public class Item {
 	
-	int itemID, itemQtty;
-	String itemName, temBrand;
+	Item itemID, itemQtty;
+	public String itemName;
+	public String temBrand;
+	public String imageLocation;
 	
-	public void getItem(String params){
-		
-		ItemCollection searchItemInList = new ItemCollection();
-		
-		searchItemInList.itemCollection(params);
-		
-	}
 	
-	public String returnItem(){
-		
-		
-		return "0";
-	}
 	
 }

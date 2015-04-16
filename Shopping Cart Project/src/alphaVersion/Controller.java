@@ -2,23 +2,30 @@ package alphaVersion;
 
 public class Controller {
 	
-	public void searchItem(String params){
-		
-		Item searchItem = new Item();
-		
-		searchItem.getItem(params);
-		
-	}
+	private String itemName;
+	private String imageLocation;
 	
-	public void addItemToCart(String params){
+	
+	public void searchParams(String params){
 		
-		Item addItemToCart = new Item();
+		ItemCollection searchItem = new ItemCollection(params);
 		
-		addItemToCart.getItem(params);
-		
-		//ShoppingCart cart = new ShoppingCart();
+		setItemInfo(searchItem.getItemName(), searchItem.getImageLocation());
 				
+		System.out.println(searchItem.getItemName()+" y "+searchItem.getImageLocation());
+	}
+
+	public void setItemInfo(String ItemName, String ImageLocation ){
+		this.itemName = ItemName;
+		this.imageLocation = ImageLocation;
 	}
 	
-
+	public String getItemName(){
+		return itemName;
+	}
+	public String getImageLocation(){
+		return imageLocation;
+	}
+	
+	
 }
