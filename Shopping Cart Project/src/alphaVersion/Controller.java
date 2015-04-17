@@ -12,7 +12,7 @@ public class Controller {
 		
 		setItemInfo(searchItem.getItemName(), searchItem.getImageLocation());
 				
-		System.out.println(searchItem.getItemName()+" y "+searchItem.getImageLocation());
+		//System.out.println(searchItem.getItemName()+" y "+searchItem.getImageLocation());
 	}
 
 	public void setItemInfo(String ItemName, String ImageLocation ){

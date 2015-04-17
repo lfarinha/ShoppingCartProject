@@ -16,7 +16,7 @@ public class ItemCollection {
 	public void setTempValues(String[][] temp){
         this.itemName = temp[0][0];
         this.imageLocation = temp[0][1];
-        printItemsWhileParameter(itemName, imageLocation);
+        //printItemsWhileParameter(itemName, imageLocation);
 	}
 	
 	
