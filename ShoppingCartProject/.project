@@ -25,4 +25,10 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.php.core.PHPNature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>WWW</name>
+			<value>file:/C:/wamp/www</value>
+		</variable>
+	</variableList>
 </projectDescription>
