@@ -41,7 +41,6 @@ class Item {
 		
 	function searchItemByName($itemName){
 		
-
 		$connection = new SqlConnection();
 		
 		$sql_query = "SELECT * FROM item WHERE itemName='$itemName'";
@@ -55,6 +54,5 @@ class Item {
                         
 		}
 	}
-	
 
 }

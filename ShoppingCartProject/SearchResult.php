@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
 <title>Search Result</title>
 </head>
@@ -19,39 +19,9 @@
 
         <div id="section">
 	<?php
-
-        $params = $_POST["searchCriteria"];
+        $params = $_GET['searchCriteria'];
         $searchItem = new SearchController();
-	$searchItem->searchParams($params);
-                
-	$name = $searchItem->getItemName();
-        $brand = $searchItem->getItemBrand();
-        $price = $searchItem->getItemPrice();
-        $qtty = $searchItem->getItemQtty();
-        $location = $searchItem->getItemLocation();
-                
-        echo'<div id="box">
-            <form action="ItemView.php" method="post">
-            <table id="t01">
-            <tr>
-                <th><a>Name</a></th>
-                <th><a>Brand</a></th>
-                <th><a>Price</a></th>
-                <th><a>Qtty in Stock</a></th>
-                <th><a>Img Location</a></th>
-            <tr>
-            <tr>
-                <td><a href="ItemView.php" name="'.$name.'" onclick="form.submit()">'.$name.'</a></td>
-                <td>'.$brand.'</td>
-                <td>'.$price.'</td>
-                <td>'.$qtty.'</td>
-                <td>'.$location.'</td>
-            <tr>
-            </table>
-            </form>
-            </div>';
-        
-        
+	$searchItem->actionPerformed($params);      
 	?>
         </div>
 

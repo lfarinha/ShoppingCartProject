@@ -5,41 +5,51 @@ class SearchController{
  	private $itemBrand="";
  	private $itemPrice="";
  	private $itemQtty="";
-        private $itemLocation="";
-        
         function __construct() {
             
         }
 	
-	function searchParams($params){
+	function actionPerformed($params){
 
 		$searchItem = new Item();
-		$searchItem->searchItemByName($params);
-		
-		$this->itemName=$searchItem->getItemName();
-                $this->itemBrand=$searchItem->getItemBrand();
-                $this->itemPrice=$searchItem->getItemPrice();
-                $this->itemQtty=$searchItem->getItemQtty();
-                $this->itemLocation=$searchItem->getItemLocation();
-	}
-        
-        function getItemName(){
-            return $this->itemName;
+		$searchItem->searchItemByName($params);	
+              
+                $this->itemName = $searchItem->getItemName();
+                $this->itemBrand = $searchItem->getItemBrand();
+                $this->itemPrice = $searchItem->getItemPrice();
+                $this->itemQtty = $searchItem->getItemQtty();
+                
+                $this->printItemInfo($this->itemName, $this->itemBrand, $this->itemPrice, $this->itemQtty);
         }
+
         
-        function getItemBrand(){
-            return $this->itemBrand;
-        }
-        
-        function getItemPrice(){
-            return $this->itemPrice;
-        }
-        
-        function getItemQtty(){
-            return $this->itemQtty;
-        }
-        
-        function getItemLocation(){
-            return $this->itemLocation;
+        function printItemInfo($name, $brand, $price, $qtty){
+           
+             echo'
+            <script type="text/javascript">
+                function submitform(){
+                    document.myform.submit();
+                }
+            </script>                 
+
+            <div id="searchBox">
+            <form action="ItemView.php" method="get">
+            <table id="t01">
+            <tr>
+                <th><a>Name</a></th>
+                <th><a>Brand</a></th>
+                <th><a>Price</a></th>
+                <th><a>Qtty in Stock</a></th>
+            <tr>
+            <tr>
+                <td><input type="submit" name="itemName" value="'.$name.'"></td>
+                <td>'.$brand.'</td>
+                <td>'.$price.'</td>
+                <td>'.$qtty.'</td>
+            <tr>
+            </table>
+            </form>
+            </div>';
+            
         }
 }
