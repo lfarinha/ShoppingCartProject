@@ -82,23 +82,10 @@ table#t01 th	{
     //margin: 25px;
 }
 
-#shoppingCartButton{
+/*#shoppingCartButton{
   padding:5px;
   background-color: #dcdcdc;
-  border: 1px solid #666;
-  color:#000;
+  border: 2px solid #666;
+  color: black;
   text-decoration:none;
-}
-
-button:hover{
-    color: #666;
-    outline: #000;
-}
-
-button:active{
-    
-}
-
-button:focus{
-    
-}
+}*/

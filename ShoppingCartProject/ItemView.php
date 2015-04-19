@@ -34,7 +34,9 @@ if (isset($_GET['itemName'])) {
         </div>
     
         <div id="aside">
-            <input type="submit" name="shoppingCart" value="Add to shopping cart" id="shoppingCartButton">
+            <form method="get" action="#">
+            <input type="submit" name="shoppingCart" value="Add to shopping cart">
+            </form>
         </div>
 
         <div id="footer">
