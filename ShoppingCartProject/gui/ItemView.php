@@ -1,4 +1,4 @@
-<?php include 'ItemViewController.php';
+<?php include 'controller/ItemViewController.php';
 if (isset($_GET['itemName'])) {
                 $itemToShow = $_GET['itemName'];
             }else {
@@ -9,7 +9,7 @@ if (isset($_GET['itemName'])) {
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
     <title><?php echo $itemToShow; ?></title>
 </head>
 <body>
