@@ -1,4 +1,4 @@
-<?php include 'Item.php';
+<?php include 'class/Item.php';
 class SearchController{
 	
  	private $itemName="";
