@@ -30,12 +30,13 @@ if (isset($_GET['itemName'])) {
             $showItemInfo->actionPerformed($itemToShow);
            
               ;?>
+ 
             </div>
         </div>
     
         <div id="aside">
             <form method="get" action="ManageShoppingCart.html">
-            <input type="submit" name="shoppingCart" value="Add to shopping cart">
+                <input type="submit" name="<?php echo $itemToShow;?>" value="LOL" title="Add to Shooping Cart">
             </form>
         </div>
 
