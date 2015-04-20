@@ -5,6 +5,7 @@ class SearchController{
  	private $itemBrand="";
  	private $itemPrice="";
  	private $itemQtty="";
+        
         function __construct() {
             
         }

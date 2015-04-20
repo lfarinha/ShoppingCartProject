@@ -16,25 +16,25 @@ if (isset($_GET['itemName'])) {
         <div id="header">
         <h1>Welcome!</h1>
         </div>
-    
-            
+        
         <div id="nav">
         </div>
     
 
         <div id="section">
             <div id="itemInfoBox">
+                
             <?php
             
             $showItemInfo = new ItemViewController();
             $showItemInfo->actionPerformed($itemToShow);
-                                
+           
               ;?>
             </div>
         </div>
     
         <div id="aside">
-            <form method="get" action="#">
+            <form method="get" action="ManageShoppingCart.html">
             <input type="submit" name="shoppingCart" value="Add to shopping cart">
             </form>
         </div>
