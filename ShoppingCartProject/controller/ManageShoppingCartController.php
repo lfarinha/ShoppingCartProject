@@ -47,26 +47,8 @@ class ManageShoppingCartController {
         function printAllItemInShoppingCart(){
             
             $getAllItems = new ShoppingCartItems();
-            $getAllItems->getAllItemsFromTable();          
-            
-        echo' 
-            <table id="t01">
-            <tr>
-                <th></th>
-                <th><p align="center">Name</p></th>
-                <th><p align="center">Brand</p></th>
-                <th><p align="center">Price</p></th>
-                <th><p align="center">Quantity</p></th>
-            <tr>
-            <tr>
-                <td><img src="'.$imageLocation.'" alt="'.$name.'" width="350" height="250"></td> 
-                <td><p align="center">'.$name.'</p></td>
-                <td><p align="center">'.$brand.'</p></td>
-                <td><p align="center">'.$price.'</p></td>
-                <td><p align="center">'.$qtty.'</p></label></td>
-            <tr>
-            </table>
-            ';
+            $getAllItems->getItemsFromCart();
+ 
     }
     
     function addToCart($name, $brand, $price, $qtty){

@@ -1,24 +1,15 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of ShoppingCartItems
- *
- * @author Leonardo
- */
 class ShoppingCartItems {
+    
+    private $nRows;
     
     function createCartTable(){
         
         //creates a new table to shopping cart
         $connection = new SqlConnection();
 		
-		$sql_query = "CREATE TABLE IF NOT EXISTS `tempCart` (
+		$sql_query = "CREATE TABLE IF NOT EXISTS `tempcart` (
                               `itemName` varchar(100) NOT NULL,
                               `itemBrand` varchar(100) NOT NULL,
                               `itemPrice` int(100) NOT NULL,
@@ -71,22 +62,37 @@ class ShoppingCartItems {
                 }
     }
     
-    function getAllItemsFromTable(){
+    function getItemsFromCart(){
         
         $connection = new SqlConnection();
-        $numberOfRows = $connection->getNumberOfRows();
+        $nRows = $this->getCartRows();
         
-        for($id=1; $id<=$numberOfRows; $id++){
-            echo 'id '.$id.' '.$numberOfRows;
-        $sql_query = "SELECT * FROM `tempCart` WHERE cartID=$id";
-
-        if ($result = mysqli_query($connection->mysqliConnect(), $sql_query)) {
-                $row = mysqli_fetch_assoc($result);
-                echo '$row '.$row[$id];
-                }
-        }
+        $sql_query = "SELECT * FROM tempcart";
         
+        $result = $connection->mysqliConnect()->query($sql_query);
+        $row = mysqli_fetch_array($result, MYSQLI_NUM);
+         for($i=0; $i<=$nRows; $i++){
+             //$row[$i];
+            echo ''.$row[$i].' -- '.$i;
+            }
+    }
+    
+    function queryTempCart(){
+        $connection = new SqlConnection();
+        $mysqli = $connection->mysqliConnect();
+        $sql_query = "SELECT * FROM tempCart";
+        $result = $mysqli->query($sql_query);
+        $nRows = mysqli_num_rows($result);
+        $this->setCartRows($nRows);
+    }
+    
+    function setCartRows($nRows){
+        $this->nRows=$nRows;
+    }
+    
+    function getCartRows(){
+        return $this->nRows;
     }
        
-    }
+    }//EOF
 

@@ -28,7 +28,7 @@
         <div id="section">
             <?php 
                     $lookUpItem = new ManageShoppingCartController();
-                    $lookUpItem->getItemsHandler($itemName, $qtty);
+                    $lookUpItem->printAllItemInShoppingCart();
             ?>
         </div>
 
