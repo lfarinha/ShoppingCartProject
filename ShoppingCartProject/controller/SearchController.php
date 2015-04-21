@@ -1,4 +1,4 @@
-<?php include 'class/Item.php';
+<?php include '..\class\Item.php';
 class SearchController{
 	
  	private $itemName="";
@@ -27,12 +27,6 @@ class SearchController{
         function printItemInfo($name, $brand, $price, $qtty){
            
              echo'
-            <script type="text/javascript">
-                function submitform(){
-                    document.myform.submit();
-                }
-            </script>                 
-
             <div id="searchBox">
             <form action="ItemView.php" method="get">
             <table id="t01">

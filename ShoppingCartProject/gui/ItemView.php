@@ -1,18 +1,18 @@
-<?php include 'controller/ItemViewController.php';
+<?php include '..\controller\ItemViewController.php';
 if (isset($_GET['itemName'])) {
                 $itemToShow = $_GET['itemName'];
             }else {
                 $itemToShow = null;
-                    }
-?>
+                    }?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
     <title><?php echo $itemToShow; ?></title>
 </head>
 <body>
+        <form method="get" action="AddToShoppingCart.php">
         <div id="header">
         <h1>Welcome!</h1>
         </div>
@@ -24,22 +24,17 @@ if (isset($_GET['itemName'])) {
         <div id="section">
             <div id="itemInfoBox">
                 
-            <?php
-            
-            $showItemInfo = new ItemViewController();
-            $showItemInfo->actionPerformed($itemToShow);
-           
-              ;?>
+            <?php $showItemInfo = new ItemViewController(); $showItemInfo->actionPerformed($itemToShow); 
+                      
+            ?>
  
             </div>
         </div>
     
         <div id="aside">
-            <form method="get" action="ManageShoppingCart.html">
-                <button type="submit" name="addtoshoppingcart" value="<?php echo $itemToShow;?>">Add to Shooping Cart</button>
-            </form>
+            <button type="submit" name="addtoshoppingcart" value="<?php echo $itemToShow; ?>">Add to Cart</button>
         </div>
-
+        </form>
         <div id="footer">
         Copyright © 2015, Leonardo Farinha, Robert Krall
         </div>  

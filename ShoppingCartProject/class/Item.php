@@ -1,22 +1,20 @@
 <?php include 'SqlConnection.php';
 class Item {
     
- 	private $itemName="";
+        private $itemId=0;
+        private $itemName="";
  	private $itemBrand="";
  	private $itemPrice="";
  	private $itemQtty="";
         private $itemLocation="";
 
-	function __construct(){
-		
-	}
-	
-	function setItemName($ItemName, $itemBrand, $itemPrice, $itemQtty, $itemLocation){
-		$this->itemName=$ItemName;
-                $this->itemBrand=$itemBrand;
-                $this->itemPrice=$itemPrice;
-                $this->itemQtty=$itemQtty;
-                $this->itemLocation=$itemLocation; 
+	function setItemName($id, $name, $brand, $price, $qtty, $location){
+            $this->itemId=$id;
+            $this->itemName=$name;
+            $this->itemBrand=$brand;
+            $this->itemPrice=$price;
+            $this->itemQtty=$qtty;
+            $this->itemLocation=$location;
         }
 	
 	function getItemName(){
@@ -41,18 +39,19 @@ class Item {
 		
 	function searchItemByName($itemName){
 		
-		$connection = new SqlConnection();
-		
+		$mysqli = new SqlConnection();
+                
 		$sql_query = "SELECT * FROM item WHERE itemName='$itemName'";
 		
-		if ($result = mysqli_query($connection->mysqliConnect(), $sql_query)) {
+		if ($result = mysqli_query($mysqli->mysqliConnect(), $sql_query)) {
 			$row = mysqli_fetch_assoc($result);
 			//echo 'value = ' . $row['itemName'];
-			$this->setItemName($row['itemName'], $row['itemBrand'], $row['itemPrice'], $row['itemQtty'], $row['itemImageLocation']);
+			$this->setItemName($row['itemId'], $row['itemName'], $row['itemBrand'], $row['itemPrice'], $row['itemQtty'], $row['itemImageLocation']);
                         
                         //echo $row['itemName'].' '.$row['itemBrand'].' '.$row['itemPrice'].' '.$row['itemQtty'].' '.$row['itemImageLocation'];
                         
 		}
+                $mysqli->mysqliConnect()->close();
 	}
 
 }

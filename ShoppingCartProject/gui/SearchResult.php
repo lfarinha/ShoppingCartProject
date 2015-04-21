@@ -1,9 +1,9 @@
-<?php include 'controller/SearchController.php';?>
+<?php include '..\controller\SearchController.php';?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="style/style.css">
+<link rel="stylesheet" type="text/css" href="../style/style.css">
 <title>Search Result</title>
 </head>
 <body>
