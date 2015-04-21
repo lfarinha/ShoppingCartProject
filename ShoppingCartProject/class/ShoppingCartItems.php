@@ -36,22 +36,25 @@ class ShoppingCartItems {
         
         $connection = new SqlConnection();
         
-        $sql_query_select = "SELECT * FROM tempCart WHERE itemName=$name";
+        $sql_query_select = "SELECT * FROM tempCart WHERE itemName='$name'";
         
-        if ($connection->mysqliConnect()->query($sql_query_select) === TRUE) {
-                        $sql_query = "INSERT INTO `tempCart` (`itemQtty`) VALUES ('$qtty') WHERE itemName=$name";
+        $result = $connection->mysqliConnect()->query($sql_query_select);
+        $row = mysqli_fetch_assoc($result);
+        
+        if ($row["itemName"] === $name) {
+                        $sql_query = "UPDATE `tempCart` SET itemQtty=$qtty WHERE itemName='$name'";
                         if ($connection->mysqliConnect()->query($sql_query) === TRUE) {
-                            echo "Data inserted successfully";
+                            echo "<br>Data inserted successfully1";
                         } else {
-                            echo "Error inerting in table: " . $connection->mysqliConnect()->error;
+                            echo "<br>Error inerting in table 1: " . $connection->mysqliConnect()->error;
                         }
-                    echo "Item quatities for the item ".$name." have been updated to ".$qtty;
+                    echo "<br>Item quatities for the item ".$name." have been updated to ".$qtty;
         } else {
                     $sql_query = "INSERT INTO `tempCart` (`itemName`, `itemBrand`, `itemPrice`, `itemQtty`) VALUES ('$name', '$brand', '$price', '$qtty')";
                         if ($connection->mysqliConnect()->query($sql_query) === TRUE) {
-                            echo "Data inserted successfully";
+                            echo "<br>Data inserted successfully2";
                         } else {
-                            echo "Error inerting in table: " . $connection->mysqliConnect()->error;
+                            echo "<br>Error inerting in table 2: " . $connection->mysqliConnect()->error;
                         }
         }
         }
