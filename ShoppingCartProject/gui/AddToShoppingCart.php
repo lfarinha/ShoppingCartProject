@@ -29,7 +29,7 @@
         <div id="section">
             <?php 
                     $lookUpItem = new ManageShoppingCartController();
-                    $lookUpItem->getItemsHandler($itemName, $qtty);
+                    $lookUpItem->addToCartReviewHandler($itemName, $qtty);
             ?>
         </div>
         

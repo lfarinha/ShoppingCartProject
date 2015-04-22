@@ -2,7 +2,11 @@
 
 class ShoppingCartItems {
     
-    private $nRows;
+    private $itemName="";
+    private $itemBrand="";
+    private $itemPrice=0;
+    private $itemQtty=0;
+ 
     
     function createCartTable(){
         
@@ -20,7 +24,8 @@ class ShoppingCartItems {
                     echo "Table tempCart created successfully";
                 } else {
                     echo "Error creating table: " . $connection->mysqliConnect()->error;
-                }         
+                }
+                $connection->mysqliConnect()->close();
     }
     
     function addItemsToTable($name, $brand, $price, $qtty){
@@ -33,24 +38,24 @@ class ShoppingCartItems {
         $row = mysqli_fetch_assoc($result);
         
         if ($row["itemName"] === $name) {
-                        $sql_query = "UPDATE `tempCart` SET itemQtty=$qtty WHERE itemName='$name'";
+                $sql_query = "UPDATE `tempCart` SET itemQtty=$qtty WHERE itemName='$name'";
                         if ($connection->mysqliConnect()->query($sql_query) === TRUE) {
                             echo "<br>Data inserted successfully1";
                         } else {
                             echo "<br>Error inerting in table 1: " . $connection->mysqliConnect()->error;
                         }
-                    echo "<br>Item quatities for the item ".$name." have been updated to ".$qtty;
-        } else {
-                    $sql_query = "INSERT INTO `tempCart` (`itemName`, `itemBrand`, `itemPrice`, `itemQtty`) VALUES ('$name', '$brand', '$price', '$qtty')";
+         } else {
+                $sql_query = "INSERT INTO `tempCart` (`itemName`, `itemBrand`, `itemPrice`, `itemQtty`) VALUES ('$name', '$brand', '$price', '$qtty')";
                         if ($connection->mysqliConnect()->query($sql_query) === TRUE) {
                             echo "<br>Data inserted successfully2";
                         } else {
                             echo "<br>Error inerting in table 2: " . $connection->mysqliConnect()->error;
-                        }
+         }
         }
+        $connection->mysqliConnect()->close();
         }
     
-    function deleteItemsFromTable($name){
+    function deleteItemsFromTable($name){ //NOT DONE YET
         $connection = new SqlConnection();
      
         $sql_query = "DELETE FROM `tempCart` WHERE itemName=$name";
@@ -65,16 +70,24 @@ class ShoppingCartItems {
     function getItemsFromCart(){
         
         $connection = new SqlConnection();
-        $nRows = $this->getCartRows();
-        
+        $mysqli = $connection->mysqliConnect();
+
         $sql_query = "SELECT * FROM tempcart";
+        $result = $mysqli->query($sql_query);
         
-        $result = $connection->mysqliConnect()->query($sql_query);
-        $row = mysqli_fetch_array($result, MYSQLI_NUM);
-         for($i=0; $i<=$nRows; $i++){
-             //$row[$i];
-            echo ''.$row[$i].' -- '.$i;
-            }
+        
+        $rows = mysqli_num_rows($result);
+        $cols = mysqli_num_fields($result);
+        
+        $count=0;
+        while ($row= mysqli_fetch_assoc($result)){
+           $item=array();
+           $item[$count]=$row;
+           //echo var_dump($item);
+           $count++;
+        }             
+            $connection->mysqliConnect()->close();
+            return $item;
     }
     
     function queryTempCart(){
@@ -84,15 +97,30 @@ class ShoppingCartItems {
         $result = $mysqli->query($sql_query);
         $nRows = mysqli_num_rows($result);
         $this->setCartRows($nRows);
+        $mysqli->mysqliConnect()->close();
     }
     
-    function setCartRows($nRows){
-        $this->nRows=$nRows;
-    }
+//    function setCartEntry($name, $brand, $price, $qtty){
+//        $this->arrayOfItems['name']=$name;
+//        $this->arrayOfItems['brand']=$brand;
+//        $this->arrayOfItems['price']=$price;
+//        $this->arrayOfItems['qtty']=$qtty;
+//    }
+//    
+//    function getNameCartEntry(){
+//        return $this->arrayOfItems['name'];
+//    }
+//    function getBrandCartEntry(){
+//        return $this->arrayOfItems['brand'];
+//    }
+//    function getPriceCartEntry(){
+//        return $this->arrayOfItems['price'];
+//    }
+//    function getQttyCartEntry(){
+//        return $this->arrayOfItems['qtty'];
+//    }
+
     
-    function getCartRows(){
-        return $this->nRows;
-    }
-       
+    
     }//EOF
 

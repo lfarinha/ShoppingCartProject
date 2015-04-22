@@ -15,15 +15,52 @@ class ManageShoppingCartController {
     
 
     
-    function getItemsHandler($params, $qtty) {
+    function addToCartReviewHandler($params, $qtty) {
             $infoToShow = new Item();
             $infoToShow->searchItemByName($params);
 
-            $this->addToCart($infoToShow->getItemName(), $infoToShow->getItemBrand(), $infoToShow->getItemPrice(), $qtty);
-            $this->printItemInShoppingCart($infoToShow->getItemLocation(), $infoToShow->getItemName(), $infoToShow->getItemBrand(), $infoToShow->getItemPrice(), $qtty);
+            $this->addToCartHandler($infoToShow->getItemName(), $infoToShow->getItemBrand(), $infoToShow->getItemPrice(), $qtty);
+            $this->printItemAddedToCart($infoToShow->getItemLocation(), $infoToShow->getItemName(), $infoToShow->getItemBrand(), $infoToShow->getItemPrice(), $qtty);
     }
     
-    function printItemInShoppingCart($imageLocation, $name, $brand, $price, $qtty){
+    function addToCartHandler($name, $brand, $price, $qtty){
+        $tempCart = new ShoppingCartItems();
+        $tempCart->createCartTable();
+        $tempCart->addItemsToTable($name, $brand, $price, $qtty);
+    }
+    
+    function displayItemsFromCartHandler(){
+        return $this->printItemsFromCart();
+    }
+    
+    function printItemsFromCart(){
+            $displayItems = new ShoppingCartItems();
+            $displayItems->getItemsFromCart();
+
+            
+
+//            echo' 
+//            <table id="t01">
+//            <tr>
+//                <th></th>
+//                <th><p align="center">Name</p></th>
+//                <th><p align="center">Brand</p></th>
+//                <th><p align="center">Price</p></th>
+//                <th><p align="center">Quantity</p></th>
+//            <tr>
+//            <tr>
+//                <td><img src="" alt="'.$displayItems->getNameCartEntry().'" width="350" height="250"></td> 
+//                <td><p align="center">'.$displayItems->getNameCartEntry().'</p></td>
+//                <td><p align="center">'.$displayItems->getBrandCartEntry().'</p></td>
+//                <td><p align="center">'.$displayItems->getPriceCartEntry().'</p></td>
+//                <td><p align="center">'.$displayItems->getQttyCartEntry().'</p></label></td>
+//            <tr>
+//            </table>
+//            ';
+ 
+    }
+    
+    function printItemAddedToCart($imageLocation, $name, $brand, $price, $qtty){
         echo' 
             <table id="t01">
             <tr>
@@ -44,18 +81,8 @@ class ManageShoppingCartController {
             ';
     }
     
-        function printAllItemInShoppingCart(){
-            
-            $getAllItems = new ShoppingCartItems();
-            $getAllItems->getItemsFromCart();
- 
-    }
     
-    function addToCart($name, $brand, $price, $qtty){
-        $tempCart = new ShoppingCartItems();
-        $tempCart->createCartTable();
-        $tempCart->addItemsToTable($name, $brand, $price, $qtty);
-    }
+
     
     function updateCartQtty(){
         
