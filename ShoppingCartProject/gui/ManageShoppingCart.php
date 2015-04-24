@@ -1,4 +1,4 @@
-<?php include '..\controller\ManageShoppingCartController.php';
+<?php include '..\controller\ShoppingCartController.php';
         if (isset($_GET['qtty']) and isset($_GET['addtoshoppingcart'])) {
                 $qtty = $_GET['qtty'];
                 $itemName = $_GET['addtoshoppingcart'];
@@ -27,7 +27,7 @@
 
         <div id="section">
             <?php 
-                    $lookUpItem = new ManageShoppingCartController();
+                    $lookUpItem = new ShoppingCartController();
                     $lookUpItem->displayItemsFromCartHandler();
             ?>
         </div>

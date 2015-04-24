@@ -3,7 +3,7 @@
 class PrintValues {
     //put your code here
     
-function printItemInfo($imageLocation, $name, $brand, $price, $qtty){
+        function printItemInfo($imageLocation, $name, $brand, $price, $qtty){
         echo'<div id="searchBox">
             <form action="ItemView.php" method="get">
             <table id="t01">
@@ -26,4 +26,67 @@ function printItemInfo($imageLocation, $name, $brand, $price, $qtty){
             </div>';
     }
     
+        function printItemInfoQtty($imageLocation, $name, $brand, $price){            
+           echo' 
+            <table id="t01">
+            <tr>
+                <th>image</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th></th>
+            <tr>
+            <tr>
+                <td><img src="'.$imageLocation.'" alt="'.$name.'" width="350" height="250"></td> 
+                <td>'.$name.'</td>
+                <td>'.$brand.'</td>
+                <td>'.$price.'</td>
+                <td><label>Quatities<input type="text" name="qtty"></label></td>
+            <tr>
+            </table>
+            ';
+        }
+        
+        function printItemAddedToCart($imageLocation, $name, $brand, $price, $qtty){
+        echo' 
+            <table id="t01">
+            <tr>
+                <th></th>
+                <th><p align="center">Name</p></th>
+                <th><p align="center">Brand</p></th>
+                <th><p align="center">Price</p></th>
+                <th><p align="center">Quantity</p></th>
+            <tr>
+            <tr>
+                <td><img src="'.$imageLocation.'" alt="'.$name.'" width="350" height="250"></td> 
+                <td><p align="center">'.$name.'</p></td>
+                <td><p align="center">'.$brand.'</p></td>
+                <td><p align="center">'.$price.'</p></td>
+                <td><p align="center">'.$qtty.'</p></label></td>
+            <tr>
+            </table>
+            ';
+    }
+     function printAllFromCart($result){
+        $c=0;
+        while ($row = mysqli_fetch_array($result)){
+            $this->arrayName[$c]=$row[0]; $this->arrayBrand[$c]=$row[1]; $this->arrayPrice[$c]=$row[2]; $this->arrayQtty[$c]=$row[3]; $this->arrayImgLocation[$c]=$row[4];
+            echo'<table id="t01">
+            <tr>
+                <th></th>
+                <th><p align="center">Name</p></th>
+                <th><p align="center">Brand</p></th>
+                <th><p align="center">Price</p></th>
+                <th><p align="center">Quantity</p></th>
+            <tr>
+            <tr>
+                <td><img src="'.$this->arrayImgLocation[$c]=$row[4].'" alt="'.$this->arrayName[$c].'" width="350" height="250"></td> 
+                <td><p align="center">'.$this->arrayName[$c].'</p></td>
+                <td><p align="center">'.$this->arrayBrand[$c].'</p></td>
+                <td><p align="center">'.$this->arrayPrice[$c].'</p></td>
+                <td><p align="center">'.$this->arrayQtty[$c].'</p></label></td>
+            <tr>
+            </table>';
+        $c++;}
+    }
 }

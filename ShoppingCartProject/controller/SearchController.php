@@ -4,7 +4,7 @@ class SearchController{
         
 	function actionPerformed($params){
 		$queryItem = new SqlQuery();
-                $queryItem->selectFromItemTable($params);
+                $queryItem->searchFromItemTable($params);
         }
         
 }
