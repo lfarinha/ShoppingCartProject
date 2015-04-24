@@ -4,6 +4,7 @@ class SqlQuery{
     
     function searchFromItemTable($itemName){
         $mysqli=new SqlConnection();
+        include 'PrintValues.php';
         $printSelectedItem = new PrintValues();
         $query = "SELECT * FROM item WHERE itemName='$itemName'";       
         if ($result = mysqli_query($mysqli->mysqliConnect(), $query)) {
@@ -77,6 +78,7 @@ class SqlQuery{
     function selectFromTempCartToPrint($itemName){
         $connection = new SqlConnection();
         $mysqli = $connection->mysqliConnect();
+        include 'PrintValues.php';
         $printAddedItem = new PrintValues();
         $query = "SELECT * FROM tempcart WHERE itemName='$itemName'";
         $result = $mysqli->query($query);
@@ -86,6 +88,7 @@ class SqlQuery{
     
     function selectAllFromTempCart(){
         $connection = new SqlConnection();
+        include 'PrintValues.php';
         $printValue = new PrintValues();
         $mysqli = $connection->mysqliConnect();
         $sql_query = "SELECT * FROM tempcart";

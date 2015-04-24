@@ -1,4 +1,4 @@
-<?php include '..\class\Item.php';
+<?php include '..\class\SqlQuery.php';
 
 class SearchController{      
         

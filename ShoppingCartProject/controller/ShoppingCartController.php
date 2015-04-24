@@ -1,4 +1,4 @@
-<?php include'..\class\Item.php'; include '..\class\ShoppingCartItems.php';
+<?php include '..\class\SqlQuery.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
