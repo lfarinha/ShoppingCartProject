@@ -12,21 +12,19 @@
  * @author Leonardo
  */
 class ManageShoppingCartController {
-    
-
-    
+        
     function addToCartReviewHandler($params, $qtty) {
             $infoToShow = new Item();
             $infoToShow->searchItemByName($params);
 
-            $this->addToCartHandler($infoToShow->getItemName(), $infoToShow->getItemBrand(), $infoToShow->getItemPrice(), $qtty);
+            $this->addToCartHandler($infoToShow->getItemName(), $infoToShow->getItemBrand(), $infoToShow->getItemPrice(), $qtty, $infoToShow->getItemLocation());
             $this->printItemAddedToCart($infoToShow->getItemLocation(), $infoToShow->getItemName(), $infoToShow->getItemBrand(), $infoToShow->getItemPrice(), $qtty);
     }
     
-    function addToCartHandler($name, $brand, $price, $qtty){
+    function addToCartHandler($name, $brand, $price, $qtty, $img){
         $tempCart = new ShoppingCartItems();
         $tempCart->createCartTable();
-        $tempCart->addItemsToTable($name, $brand, $price, $qtty);
+        $tempCart->addItemsToTable($name, $brand, $price, $qtty, $img);
     }
     
     function displayItemsFromCartHandler(){
@@ -35,8 +33,9 @@ class ManageShoppingCartController {
     
     function printItemsFromCart(){
             $displayItems = new ShoppingCartItems();
-            $displayItems->getItemsFromCart();
-
+            $data = $displayItems->getItemsFromCart();
+ 
+            //echo var_dump($data);
             
 
 //            echo' 

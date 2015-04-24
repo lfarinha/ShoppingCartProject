@@ -1,32 +1,27 @@
 <?php
 
 class SqlConnection{
+
+        private $servername = "localhost";
+        private $username = "root";
+        private $password = "";
+        private $dbname = "inventorydb";
     
-        private $numOfRows=0;
-    
+        function SqlConnection(){
+            
+        }
+        
 	function mysqliConnect(){
              
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "inventorydb";
-            
             // Create connection
-            $mysqli = new mysqli($servername, $username, $password, $dbname);
+            $connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
             
             // Check connection
             if (mysqli_connect_errno()) {
                 printf("Connect failed: %s\n", mysqli_connect_error());
                 exit();
             }
-            return $mysqli;
+            return $connection;
 	}
        
-        function setNumberOfRows($nRows){
-            $this->numOfRows=$nRows;
-        }
-        
-        function getNumberOfRows(){
-            return $this->numOfRows;
-        }
 }

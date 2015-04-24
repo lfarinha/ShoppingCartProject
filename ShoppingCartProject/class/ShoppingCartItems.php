@@ -2,11 +2,12 @@
 
 class ShoppingCartItems {
     
-    private $itemName="";
-    private $itemBrand="";
-    private $itemPrice=0;
-    private $itemQtty=0;
- 
+        private $arrayName=array();
+        private $arrayBrand=array();
+        private $arrayPrice=array();
+        private $arrayQtty=array();
+        private $arrayImgLocation=array();
+    
     
     function createCartTable(){
         
@@ -17,26 +18,28 @@ class ShoppingCartItems {
                               `itemName` varchar(100) NOT NULL,
                               `itemBrand` varchar(100) NOT NULL,
                               `itemPrice` int(100) NOT NULL,
-                              `itemQtty` int(100) NOT NULL
+                              `itemQtty` int(100) NOT NULL,
+                              `itemImgLocation` varchar(100) NOT NULL
                                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
                 if ($connection->mysqliConnect()->query($sql_query) === TRUE) {
                     echo "Table tempCart created successfully";
                 } else {
-                    echo "Error creating table: " . $connection->mysqliConnect()->error;
+                    echo "Error creating CARTTEMP table: ".$connection->mysqliConnect()->error;
                 }
                 $connection->mysqliConnect()->close();
     }
     
-    function addItemsToTable($name, $brand, $price, $qtty){
+    function addItemsToTable($name, $brand, $price, $qtty, $img){
         
         $connection = new SqlConnection();
+        $mysqli = $connection->mysqliConnect();
         
         $sql_query_select = "SELECT * FROM tempCart WHERE itemName='$name'";
         
-        $result = $connection->mysqliConnect()->query($sql_query_select);
+        $result = $mysqli->query($sql_query_select);
         $row = mysqli_fetch_assoc($result);
-        
+
         if ($row["itemName"] === $name) {
                 $sql_query = "UPDATE `tempCart` SET itemQtty=$qtty WHERE itemName='$name'";
                         if ($connection->mysqliConnect()->query($sql_query) === TRUE) {
@@ -45,13 +48,14 @@ class ShoppingCartItems {
                             echo "<br>Error inerting in table 1: " . $connection->mysqliConnect()->error;
                         }
          } else {
-                $sql_query = "INSERT INTO `tempCart` (`itemName`, `itemBrand`, `itemPrice`, `itemQtty`) VALUES ('$name', '$brand', '$price', '$qtty')";
+                $sql_query = "INSERT INTO `tempCart` (`itemName`, `itemBrand`, `itemPrice`, `itemQtty`, `itemImgLocation`) VALUES ('$name', '$brand', '$price', '$qtty', '$img')";
                         if ($connection->mysqliConnect()->query($sql_query) === TRUE) {
                             echo "<br>Data inserted successfully2";
                         } else {
                             echo "<br>Error inerting in table 2: " . $connection->mysqliConnect()->error;
          }
         }
+        
         $connection->mysqliConnect()->close();
         }
     
@@ -74,21 +78,10 @@ class ShoppingCartItems {
 
         $sql_query = "SELECT * FROM tempcart";
         $result = $mysqli->query($sql_query);
-        
-        
-        $rows = mysqli_num_rows($result);
-        $cols = mysqli_num_fields($result);
-        
-        $count=0;
-        while ($row= mysqli_fetch_assoc($result)){
-           $item=array();
-           $item[$count]=$row;
-           //echo var_dump($item);
-           $count++;
-        }             
-            $connection->mysqliConnect()->close();
-            return $item;
-    }
+  
+        $this->setArray($result);
+        $connection->mysqliConnect()->close();
+     }
     
     function queryTempCart(){
         $connection = new SqlConnection();
@@ -100,27 +93,29 @@ class ShoppingCartItems {
         $mysqli->mysqliConnect()->close();
     }
     
-//    function setCartEntry($name, $brand, $price, $qtty){
-//        $this->arrayOfItems['name']=$name;
-//        $this->arrayOfItems['brand']=$brand;
-//        $this->arrayOfItems['price']=$price;
-//        $this->arrayOfItems['qtty']=$qtty;
-//    }
-//    
-//    function getNameCartEntry(){
-//        return $this->arrayOfItems['name'];
-//    }
-//    function getBrandCartEntry(){
-//        return $this->arrayOfItems['brand'];
-//    }
-//    function getPriceCartEntry(){
-//        return $this->arrayOfItems['price'];
-//    }
-//    function getQttyCartEntry(){
-//        return $this->arrayOfItems['qtty'];
-//    }
-
     
-    
+    function setArray($result){
+        $c=0;
+        while ($row = mysqli_fetch_array($result)){
+            $this->arrayName[$c]=$row[0]; $this->arrayBrand[$c]=$row[1]; $this->arrayPrice[$c]=$row[2]; $this->arrayQtty[$c]=$row[3]; $this->arrayImgLocation[$c]=$row[4];
+            echo'<table id="t01">
+            <tr>
+                <th></th>
+                <th><p align="center">Name</p></th>
+                <th><p align="center">Brand</p></th>
+                <th><p align="center">Price</p></th>
+                <th><p align="center">Quantity</p></th>
+            <tr>
+            <tr>
+                <td><img src="'.$this->arrayImgLocation[$c]=$row[4].'" alt="'.$this->arrayName[$c].'" width="350" height="250"></td> 
+                <td><p align="center">'.$this->arrayName[$c].'</p></td>
+                <td><p align="center">'.$this->arrayBrand[$c].'</p></td>
+                <td><p align="center">'.$this->arrayPrice[$c].'</p></td>
+                <td><p align="center">'.$this->arrayQtty[$c].'</p></label></td>
+            <tr>
+            </table>';
+        $c++;}
+    }
+        
     }//EOF
 

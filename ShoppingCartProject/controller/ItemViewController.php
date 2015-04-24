@@ -19,7 +19,7 @@ Class ItemViewController extends Item {
            echo' 
             <table id="t01">
             <tr>
-                <th></th>
+                <th>image</th>
                 <th>Name</th>
                 <th>Brand</th>
                 <th>Price</th>

@@ -12,24 +12,16 @@
  * @author Leonardo
  */
 class BaseController {
+    
+    function BaseController(){
         
-        private $itemName="";
- 	private $itemBrand="";
- 	private $itemPrice="";
- 	private $itemQtty="";
-        private $itemIamgeLocation="";
-
-    function getItemsHandler($params){
-            $infoToShow = new Item();
-            $infoToShow->searchItemByName($params);
-            
-            $this->itemName = $infoToShow->getItemName();
-            $this->itemBrand = $infoToShow->getItemBrand();
-            $this->itemPrice = $infoToShow->getItemPrice();
-            $this->itemQtty = $infoToShow->getItemQtty();
-            $this->itemIamgeLocation = $infoToShow->getItemLocation();
-            $this->printItemInfo($this->itemIamgeLocation, $this->itemName, $this->itemBrand, $this->itemPrice, $this->itemQtty);
     }
+        
+
+    function actionPerformed(){
+            
+    }
+
 
 
 
