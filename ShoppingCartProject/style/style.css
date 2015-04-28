@@ -6,7 +6,7 @@
     padding:5px;
 }
 #nav {
-    border: 10px solid blue;
+    //border: 10px solid blue;
     line-height:30px;
     background-color:#eeeeee;
     height:1200px;
@@ -16,23 +16,24 @@
     
 }
 #section {
-    border: 10px solid blue;
+    //border: 10px solid blue;
     width:1000px;
     float:left;
     padding-top: 50px;
     padding-bottom: 50px;
-    padding-left: 75px;
+    padding-left: 100px;
     padding-right: 10px;
 }
 
 #aside{
-    border: 10px solid blue;
-    width: 200px;
+    //border: 10px solid blue;
+    width: 155px;
     float: right;
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 50px;
     padding-left: 25px;
     padding-right: 25px;
+   
 }
 
 #footer {
@@ -70,9 +71,20 @@ table#t01 th	{
     color: white;
 }
 
+table#t02 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t02 tr:nth-child(odd) {
+   background-color: #eee;
+}
+table#t02 th	{
+    background-color: black;
+    color: white;
+}
+
 #searchBox {
     background: #fff;
-    width: 1000px;
+    width: 950px;
     padding: 10px;
     //border: 25px solid #fff;
     //margin: 25px;
@@ -83,6 +95,11 @@ table#t01 th	{
     padding: 10px;
     //border: 25px solid #fff;
     //margin: 25px;
+}
+
+#tableBox{
+    border-radius: 25px;
+    
 }
 
 /*#shoppingCartButton{

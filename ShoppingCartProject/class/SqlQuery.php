@@ -65,12 +65,10 @@ class SqlQuery{
         $result= $mysqli->query($query);
         $row = mysqli_fetch_assoc($result);
         if ($row['itemName'] === $itemName) {
-                echo 'UPDATE';
                 $queryUpdate = "UPDATE `tempCart` SET itemQtty=$qtty WHERE itemName='$itemName'";
                 $mysqli->query($queryUpdate);
          } else { $queryInsert = "INSERT INTO `tempCart` (`itemName`, `itemBrand`, `itemPrice`, `itemQtty`, `itemImageLocation`) VALUES ('$itemName', '$brand', '$price', '$qtty', '$img')";
                     $mysqli->query($queryInsert);
-                     echo 'INSERT';
          }
         $mysqli->close();
     }
@@ -97,4 +95,14 @@ class SqlQuery{
         $connection->mysqliConnect()->close();
     }
     
+    function deleteItemFromTempCart($itemName){
+        $connection = new SqlConnection();
+        $mysqli=$connection->mysqliConnect();
+        $query = "DELETE FROM tempcart WHERE itemName='$itemName'";
+        if ($result = $mysqli->query($query)){
+            echo 'Item '.$itemName.' was succesfully deleted from your cart!';
+        }else{
+            echo 'your item could not be deleted!'.$mysqli->error;//mandatory!
+        }
+    }
 }

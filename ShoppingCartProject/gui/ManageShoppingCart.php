@@ -11,9 +11,12 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="../style/style.css">
-        <title>TODO supply a title</title>
+        <title>Manage Shopping Cart</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="../ajax/Javascript/jQuery-1.11.2.js"></script>
+        
     </head>
     <body>
         <div id="header">
@@ -26,6 +29,17 @@
     
 
         <div id="section">
+<!--            <script type="text/javascript">
+            $(document).ready(function() {
+            // when the tag with id="btn" is clicked
+            $('#btn').click(function() {
+            // removes all LI with class="cls" in OL
+            $('table.cart').remove();
+            });
+            });
+            </script>-->
+
+                              
             <?php 
                     $lookUpItem = new ShoppingCartController();
                     $lookUpItem->displayItemsFromCartHandler();
