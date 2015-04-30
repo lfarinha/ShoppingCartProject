@@ -29,17 +29,6 @@
     
 
         <div id="section">
-<!--            <script type="text/javascript">
-            $(document).ready(function() {
-            // when the tag with id="btn" is clicked
-            $('#btn').click(function() {
-            // removes all LI with class="cls" in OL
-            $('table.cart').remove();
-            });
-            });
-            </script>-->
-
-                              
             <?php 
                     $lookUpItem = new ShoppingCartController();
                     $lookUpItem->displayItemsFromCartHandler();

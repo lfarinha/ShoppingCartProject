@@ -71,13 +71,30 @@ class PrintValues {
         $c=0;
         while ($row = mysqli_fetch_array($result)){
             $this->arrayName[$c]=$row[0]; $this->arrayBrand[$c]=$row[1]; $this->arrayPrice[$c]=$row[2]; $this->arrayQtty[$c]=$row[3]; $this->arrayImgLocation[$c]=$row[4];
+            //include "DeleteRow.php";
             echo '<script type="text/javascript">
-            $(document).ready(function() {
-            $("#btn'.$c.'").click(function() {
-            $("table.cart'.$c.'").remove();
-            });
-            });
-            </script><br><table id="t02" class="cart'.$c.'">
+                 $(document).ready(function() {//4
+                    $("#btn'.$c.'").click(function() {//3
+                            var name = $("input#remove'.$c.'").val();
+                            //alert ("var name --> "+name);
+                            var dataString = "itemName="+ name;
+                            //alert (dataString);
+                            $.ajax({//2
+                                type: "GET",
+                                url: "../class/DeleteRow.php",
+                                data: {"itemName": name}, 
+                                success: function(data){//1
+                                    console.log("success", data);
+                                    $("table.cart'.$c.'").remove();
+                                    alert("Item Removed From Cart")+data;
+                                },//1
+                                error: function() {
+                                alert("An error occurred.");
+                                },
+                                });//2
+                                });//3
+                                });//4
+            </script><br><form method="get" name="deleteItem"><table id="t02" class="cart'.$c.'">
             <tr class="cart'.$c.'">
                 <th class="cart'.$c.'"></th>
                 <th class="cart'.$c.'"><p align="center">Name</p></th>
@@ -87,15 +104,17 @@ class PrintValues {
             </tr>
             <tr class="cart'.$c.'">
                 <td class="cart'.$c.'"><img src="'.$this->arrayImgLocation[$c]=$row[4].'" alt="'.$this->arrayName[$c].'" width="350" height="250"></td> 
-                <td class="cart'.$c.'"><p align="center">'.$this->arrayName[$c].'</p></td>
+                <td class="cart'.$c.'"><p align="center"><input type="hidden" name="itemName" id="remove'.$c.'" value="'.$this->arrayName[$c].'">'.$this->arrayName[$c].'</p></td>
                 <td class="cart'.$c.'"><p align="center">'.$this->arrayBrand[$c].'</p></td>
                 <td class="cart'.$c.'"><p align="center">'.$this->arrayPrice[$c].'</p></td>
                 <td class="cart'.$c.'"><p align="center">'.$this->arrayQtty[$c].'</p></label></td>
             </tr>
             <tr class="cart'.$c.'">
-                <td colspan="5" class="cart'.$c.'"><button id="btn'.$c.'">Remove Item</button></td>
-            </tr></table>';
+                <td colspan="5" class="cart'.$c.'"><button type="button" id="btn'.$c.'">Remove Item</button></td>
+            </tr></table></form>';
         $c++;}
     }
     
 }
+
+
