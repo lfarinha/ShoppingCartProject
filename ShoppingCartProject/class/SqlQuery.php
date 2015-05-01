@@ -1,10 +1,9 @@
-<?php include 'SqlConnection.php';
+<?php include 'SqlConnection.php'; include_once"PrintValues.php";
 
 class SqlQuery{
     
     function searchFromItemTable($itemName){
         $mysqli=new SqlConnection();
-        include 'PrintValues.php';
         $printSelectedItem = new PrintValues();
         $query = "SELECT * FROM item WHERE itemName='$itemName'";       
         if ($result = mysqli_query($mysqli->mysqliConnect(), $query)) {
@@ -76,7 +75,6 @@ class SqlQuery{
     function selectFromTempCartToPrint($itemName){
         $connection = new SqlConnection();
         $mysqli = $connection->mysqliConnect();
-        include 'PrintValues.php';
         $printAddedItem = new PrintValues();
         $query = "SELECT * FROM tempcart WHERE itemName='$itemName'";
         $result = $mysqli->query($query);
@@ -86,23 +84,61 @@ class SqlQuery{
     
     function selectAllFromTempCart(){
         $connection = new SqlConnection();
-        include 'PrintValues.php';
         $printValue = new PrintValues();
         $mysqli = $connection->mysqliConnect();
         $sql_query = "SELECT * FROM tempcart";
         $result = $mysqli->query($sql_query);
         $printValue->printAllFromCart($result);
+        $printValue->printReceiptItems($result);
         $connection->mysqliConnect()->close();
     }
     
-    function deleteItemFromTempCart($itemName){
+    function selectReceiptItems(){
         $connection = new SqlConnection();
-        $mysqli=$connection->mysqliConnect();
-        $query = "DELETE FROM tempcart WHERE itemName='$itemName'";
-        if ($result = $mysqli->query($query)){
-            echo 'Item '.$itemName.' was succesfully deleted from your cart!';
+        $printValue = new PrintValues();
+        $mysqli = $connection->mysqliConnect();
+        $sql_query = "SELECT * FROM tempcart";
+        $result = $mysqli->query($sql_query);
+        $printValue->printReceiptItems($result);
+        $connection->mysqliConnect()->close();
+    }
+    
+    function GetTotalFromTempCart(){
+        $connection = new SqlConnection();
+        $printTotalPrice = new PrintValues();
+        $mysqli = $connection->mysqliConnect();
+        $sql_query = "Select sum(Price) as totalprice from (Select itemName, itemQtty * itemPrice as Price from inventorydb.tempcart)a";
+        if($result = $mysqli->query($sql_query)){
+            $row = mysqli_fetch_assoc($result);
+            $printTotalPrice->printTotal($row['totalprice']);
         }else{
-            echo 'your item could not be deleted!'.$mysqli->error;//mandatory!
+                    echo "There is a problem in the table ".$mysqli->errno;
         }
+        
+        $connection->mysqliConnect()->close();
+    }
+    
+    function updateItemFromInventory(){
+        $connection = new SqlConnection();
+        $mysqli = $connection->mysqliConnect();
+        $query = "UPDATE inventorydb.Item  a inner join  inventorydb.tempcart b on a.itemName = b.itemName and a.itemBrand = b.itemBrand set a.itemQtty = a.itemQtty - b.itemQtty where b.itemName is not null";
+        if($mysqli->query($query)){
+            echo "Success, inventory updated!";
+        }else{
+            echo "There is a problem updating the inventory, ".$mysqli->errno;;
+        }
+        $mysqli->close();
+    }
+    
+    function dropTempCart(){
+        $connection = new SqlConnection();
+        $mysqli = $connection->mysqliConnect();
+        $query = "DROP TABLE inventorydb.tempcart";
+        if($mysqli->query($query)){
+            echo "Success, shopping cart empty!";
+        }else{
+            echo "There is a problem deleting the cart!, ".$mysqli->errno;;
+        }
+        $mysqli->close();
     }
 }

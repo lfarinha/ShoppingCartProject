@@ -34,6 +34,11 @@
                     $lookUpItem->displayItemsFromCartHandler();
             ?>
         </div>
+        <div id="aside">
+            <form method="get" action="checkout.php">
+                <button type="submit" name="checkout">Check Out</button>
+            </form>
+        </div>
 
         <div id="footer">
         Copyright © 2015, Leonardo Farinha, Robert Krall

@@ -53,7 +53,7 @@ table {
     padding-top: 25px;
 }
 table, th, td {
-    border: 0px solid #eeeeee;
+    border: 2px solid #eeeeee;
     border-collapse: collapse;
 }
 th, td {
@@ -84,7 +84,7 @@ table#t02 th	{
 
 #searchBox {
     background: #fff;
-    width: 950px;
+    width: 900px;
     padding: 10px;
     //border: 25px solid #fff;
     //margin: 25px;
@@ -99,7 +99,6 @@ table#t02 th	{
 
 #tableBox{
     border-radius: 25px;
-    
 }
 
 /*#shoppingCartButton{
