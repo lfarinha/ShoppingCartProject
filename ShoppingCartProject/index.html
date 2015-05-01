@@ -13,23 +13,24 @@ and open the template in the editor.
     </head>
     <body>
         <div id="header">
-        <h1>Welcome!</h1>
+            <h1>Shop-a-ton!</h1>
         </div>
         
-        <div id="nav">
-            <a href="gui/ManageShoppingCart.php">Manage Shopping Cart</a>
+        <div id="nav">    
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="gui/ManageShoppingCart.php">Shopping Cart</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
         </div>
 
-        <div id="section">
-            
+        <div id="section">   
             <form action="gui/SearchResult.php" method="get">
-		<div>
-		<input type="text" name="searchCriteria"><br>
-		<input type="submit" >
-                
-               
-		</div>
-                </form>
+                <div id="searchInputPlacement"><input id="searchInputDecor" size="100" type="text" name="searchCriteria"/></div>
+                <br><br>
+                <div id="searchButtonPlacement"><button id="searchButtonDecor" type="submit" >Search</button></div>
+            </form>
         </div>
         
         <div id="footer">

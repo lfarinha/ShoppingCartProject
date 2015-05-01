@@ -133,7 +133,7 @@ class SqlQuery{
     function dropTempCart(){
         $connection = new SqlConnection();
         $mysqli = $connection->mysqliConnect();
-        $query = "DROP TABLE inventorydb.tempcart";
+        $query = "DELETE FROM TABLE inventorydb.tempcart";
         if($mysqli->query($query)){
             echo "Success, shopping cart empty!";
         }else{
