@@ -11,14 +11,14 @@ class PrintValues {
                 <th width="200"><p align="center">Name</p></th>
                 <th width="200"><p align="center">Brand</p></th>
                 <th width="200"><p align="center">Price</p></th>
-                <th width="500"><p align="center">Available Quantities</p></th>
+                <th width="500"><p align="center">Available</p></th>
             </tr>
             <tr>
                 <td><img src="'.$imageLocation.'" alt="'.$name.'" width="350" height="250"></td>
-                <td><input type="submit" name="itemName" value="'.$name.'"></td>
-                <td>'.$brand.'</td>
-                <td>'.$price.'</td>
-                <td>'.$qtty.'</td>
+                <td><p align="center"><input type="submit" name="itemName" value="'.$name.'"></p></td>
+                <td><p align="center">'.$brand.'</p></td>
+                <td><p align="center">'.$price.'</p></td>
+                <td><p align="center">'.$qtty.' Items</p></td>
             </tr>
             </table>
             </form>
@@ -33,14 +33,14 @@ class PrintValues {
                 <th><p align="center">Name</p></th>
                 <th><p align="center">Brand</p></th>
                 <th><p align="center">Price</p></th>
-                <th><p align="center">Quantity</p></th>
+                <th><p align="center">How many?</p></th>
             </tr>
             <tr>
                 <td><img src="'.$imageLocation.'" alt="'.$name.'" width="350" height="250"></td> 
                 <td>'.$name.'</td>
                 <td>'.$brand.'</td>
                 <td>'.$price.'</td>
-                <td><label>Quatities<input type="text" name="qtty"></label></td>
+                <td><input type="text" name="qtty"></td>
             </tr>
             </table>
             ';

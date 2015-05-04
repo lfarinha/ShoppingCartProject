@@ -10,11 +10,17 @@
     </head>
     <body>
         <div id="header">
-            <h1>Welcome!</h1>
+            <h1>Congrats!, Thank you for shopping!</h1>
         </div>
     
             
         <div id="nav">
+          <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../gui/ManageShoppingCart.php">Shopping Cart</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
         </div>
     
 

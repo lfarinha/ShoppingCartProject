@@ -44,11 +44,17 @@
     </head>
     <body>
         <div id="header">
-            <h1>Welcome!</h1>
+            <h1>You're almost there!</h1>
         </div>
     
             
         <div id="nav">
+          <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../gui/ManageShoppingCart.php">Shopping Cart</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
         </div>
     
 
@@ -116,23 +122,17 @@
                         Expiration Date: <input type="date" name="Edate" value="<?php echo $Edate;?>">
                         <span class="error">* <?php echo $EdateErr;?></span>
                     </fieldset>
-                    
-            
-            
-            
-            
-            
-            </td>
-            
+                              
+                </td>
             </table>
-             <button type="submit" name="receipt">Receipt</button>
-            
-        </form>
-            
-        </div>
 
-            
-        
+            </div>
+            <div id="aside">
+                <div id="asideButtonBox">
+                    <button type="submit" name="receipt" id="sideButtonDecor">Receipt</button>
+                </div>
+            </div>
+            </form>
         <div id="footer">
         Copyright © 2015, Leonardo Farinha, Robert Krall
         </div>

@@ -12,32 +12,37 @@ if (isset($_GET['itemName'])) {
     <title><?php echo $itemToShow; ?></title>
 </head>
 <body>
-        <form method="get" action="AddToShoppingCart.php">
-        <div id="header">
-        <h1>Welcome!</h1>
-        </div>
         
+        <div id="header">
+        <h1>Review your quantities!</h1>
+        </div>
+    <div class="container">
         <div id="nav">
+          <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../gui/ManageShoppingCart.php">Shopping Cart</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
         </div>
     
-
+        <form method="get" action="AddToShoppingCart.php">
         <div id="section">
-            <div id="itemInfoBox">
-                
-            <?php $showItemInfo = new ItemViewController(); $showItemInfo->actionPerformed($itemToShow); 
-                      
-            ?>
- 
+            <div id="searchBox">
+            <?php $showItemInfo = new ItemViewController(); $showItemInfo->actionPerformed($itemToShow);?>
             </div>
         </div>
     
         <div id="aside">
-            <button type="submit" name="addtoshoppingcart" value="<?php echo $itemToShow; ?>">Add to Cart</button>
+            <div id="asideButtonBox">
+            <button type="submit" name="addtoshoppingcart" id="sideButtonDecor" value="<?php echo $itemToShow; ?>">Add to Cart</button>
+            </div>
         </div>
         </form>
         <div id="footer">
         Copyright © 2015, Leonardo Farinha, Robert Krall
-        </div>  
+        </div>
+    </div>
 </body>
 </html>
 

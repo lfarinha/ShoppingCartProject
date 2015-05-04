@@ -123,7 +123,7 @@ class SqlQuery{
         $mysqli = $connection->mysqliConnect();
         $query = "UPDATE inventorydb.Item  a inner join  inventorydb.tempcart b on a.itemName = b.itemName and a.itemBrand = b.itemBrand set a.itemQtty = a.itemQtty - b.itemQtty where b.itemName is not null";
         if($mysqli->query($query)){
-            echo "Success, inventory updated!";
+            echo "";
         }else{
             echo "There is a problem updating the inventory, ".$mysqli->errno;;
         }
@@ -133,11 +133,11 @@ class SqlQuery{
     function dropTempCart(){
         $connection = new SqlConnection();
         $mysqli = $connection->mysqliConnect();
-        $query = "DELETE FROM TABLE inventorydb.tempcart";
+        $query = "TRUNCATE TABLE inventorydb.tempcart";
         if($mysqli->query($query)){
-            echo "Success, shopping cart empty!";
+            echo "";
         }else{
-            echo "There is a problem deleting the cart!, ".$mysqli->errno;;
+            echo "There is a problem deleting the cart! --> ".$mysqli->errno;;
         }
         $mysqli->close();
     }
