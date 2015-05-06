@@ -24,12 +24,14 @@ and open the template in the editor.
           <li><a href="#about">About</a></li>
         </ul>
         </div>
-
+        
         <div id="section">   
-            <form action="gui/SearchResult.php" method="get">
-                <div id="searchInputPlacement"><input id="searchInputDecor" size="100" type="text" name="searchCriteria"/></div>
+            <form name="searchform" action="gui/SearchResult.php" method="get">
+                <div id="searchInputPlacement"><input id="searchInputDecor" size="100" type="text" name="searchCriteria" required=""/></div>
                 <br><br>
-                <div id="searchButtonPlacement"><button id="searchButtonDecor" type="submit" >Search</button></div>
+                <div id="searchButtonPlacement"><button name="search" id="sideButtonDecor" type="submit">Search</button></div>
+                <br>
+                <p id="validation"></p>
             </form>
         </div>
         

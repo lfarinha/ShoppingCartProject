@@ -9,7 +9,7 @@ class CheckOutController {
 
     function displayItemsFromCartHandler(){
             $queryItem = new SqlQuery();
-            $queryItem->selectAllFromTempCart();
+            $queryItem->selectReceiptItems();
     }
     
         function GetTotalFromCartHandler(){

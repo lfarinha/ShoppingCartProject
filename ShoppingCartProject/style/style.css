@@ -142,8 +142,8 @@ a:hover, a:active {
 }
 #searchInputPlacement{
     float: left;
-    padding-left: 300px;
-    padding-top: 200px;
+    padding-left: 444px;
+    padding-top: 210px;
 }
 
 #searchInputDecor{
@@ -155,7 +155,7 @@ a:hover, a:active {
 
 #searchButtonPlacement{
     padding-top: 10px;
-    padding-left: 450px;
+    padding-left: 618px;
     float: left;
 }
 
@@ -190,4 +190,8 @@ a:hover, a:active {
     border-radius: 10px;
     border-style: solid;
     padding: 60px 163px 59px 14px;
+}
+
+#checkoutForm{
+    padding: 129px 200px;
 }

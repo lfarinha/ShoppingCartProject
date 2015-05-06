@@ -29,10 +29,6 @@
     $CCNum = empty($_POST['$CCNum']) ? '123455667' : $_POST['$CCNum'];
     $CSC = empty($_POST['$CSC']) ? '765' : $_POST['$CSC'];
     $Edate = empty($_POST['$Edate']) ? '04/26/2018' : $_POST['$Edate'];
-    
-    
-    
-    
     ?>
 <!DOCTYPE html>
 <html>
@@ -58,78 +54,80 @@
         </div>
     
 
-        <div id="section"> 
-            
-            <?php $lookUpItem = new CheckOutController();?> 
-            
+        <div id="section">             
             <form method="get" action="receipt.php">
+            <div id="checkoutForm">
+                
+                            <?php $lookUpItem = new CheckOutController(); $lookUpItem->displayItemsFromCartHandler(); echo '<br>';?> 
+                
             <table>
                 <td>
                     <fieldset>
-                        <legend>Price </legend>
-                        <input type="text" name="price" value="<?php echo $lookUpItem->GetTotalFromCartHandler();?>">
+                        <legend>Total Price</legend>
+                        <p>$<?php echo $lookUpItem->GetTotalFromCartHandler();?></p>
+                        <input type="hidden" name="price" value="<?php echo $lookUpItem->GetTotalFromCartHandler();?>">
                     </fieldset>
                     <fieldset>
                         <legend>Personal information:</legend>
                         <!--first name-->
-                        First Name: <input type="text" name="fname" value="<?php echo $fname;?>">
+                        First Name: <input type="text" name="fname" value="<?php echo $fname;?>" required="">
                         <span class="error">* <?php echo $fnameErr;?></span>
                         <br/>
                         <!--Last Name-->
-                        Last Name: <input type="text" name="lname" value="<?php echo $lname;?>">
+                        Last Name: <input type="text" name="lname" value="<?php echo $lname;?>" required="">
                         <span class="error">* <?php echo $lnameErr;?></span>
                         <br/>
                         <!--phone-->
-                        Phone Number: <input type="text" name="Phone" value="<?php echo $Phone;?>">
+                        Phone Number: <input type="text" name="Phone" value="<?php echo $Phone;?>" required="">
                         <span class="error">* <?php echo $PhoneErr;?></span>
                         <br/>
                         <!--Email-->
-                        E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+                        E-mail: <input type="text" name="email" value="<?php echo $email;?>" required="">
                         <span class="error">* <?php echo $emailErr;?></span>
                     </fieldset>
                     <fieldset>
                         <legend>Address Information</legend>
                         <!--Address Line 1-->
-                        Address Line 1: <input type="text" name="AddressLine1" value="<?php echo $AddressLine1;?>">
+                        Address Line 1: <input type="text" name="AddressLine1" value="<?php echo $AddressLine1;?>" required="">
                         <span class="error">* <?php echo $AddressLine1Err;?></span>
                         <br/>
                         <!--Address Line 2-->
-                        Address Line 2: <input type="text" name="AddressLine2" value="<?php echo $AddressLine2;?>">
+                        Address Line 2: <input type="text" name="AddressLine2" value="<?php echo $AddressLine2;?>" required="">
                         <span class="error">* <?php echo $AddressLine2Err;?></span>
                         <br/>
                         <!--city-->
-                        City: <input type="text" name="City" value="<?php echo $City;?>">
+                        City: <input type="text" name="City" value="<?php echo $City;?>" required="">
                         <span class="error">* <?php echo $CityErr;?></span>
                         <br/>
                         <!--State-->
-                        State: <input type="text" name="State" value="<?php echo $State;?>">
+                        State: <input type="text" name="State" value="<?php echo $State;?>" required="">
                         <span class="error">* <?php echo $StateErr;?></span>
                         <br/>
                         <!--Zip-->
-                        Zip: <input type="number" name="Zip" value="<?php echo $Zip;?>">
+                        Zip: <input type="text" name="Zip" value="<?php echo $Zip;?>" required="">
                         <span class="error">* <?php echo $ZipErr;?></span>
                     </fieldset>    
                    <fieldset>
                         <legend>Payment Information</legend>
                         CC Number
-                        Credit Card Number: <input type="number" name="CCNum" value="<?php echo $CCNum;?>">
+                        Credit Card Number: <input type="text" name="CCNum" value="<?php echo $CCNum;?>" required="">
                         <span class="error">* <?php echo $CCNumErr;?></span>
                         <br/>
-                        CSC Number: <input type="number" name="CSC" value="<?php echo $CSC;?>">
+                        CSC Number: <input type="text" name="CSC" value="<?php echo $CSC;?>" required="">
                         <span class="error">* <?php echo $CSCErr;?></span>
                         <br/>
                         Expiration Date
-                        Expiration Date: <input type="date" name="Edate" value="<?php echo $Edate;?>">
+                        Expiration Date: <input type="date" name="Edate" value="<?php echo $Edate;?>" required="">
                         <span class="error">* <?php echo $EdateErr;?></span>
                     </fieldset>
                               
                 </td>
             </table>
-
+            </div>
             </div>
             <div id="aside">
                 <div id="asideButtonBox">
-                    <button type="submit" name="receipt" id="sideButtonDecor">Receipt</button>
+                    <button type="submit" name="receipt" id="sideButtonDecor">Place order!</button>
                 </div>
             </div>
             </form>

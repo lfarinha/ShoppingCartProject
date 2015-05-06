@@ -40,7 +40,7 @@ class PrintValues {
                 <td>'.$name.'</td>
                 <td>'.$brand.'</td>
                 <td>'.$price.'</td>
-                <td><input type="text" name="qtty"></td>
+                <td><input type="text" name="qtty" required=""></td>
             </tr>
             </table>
             ';
